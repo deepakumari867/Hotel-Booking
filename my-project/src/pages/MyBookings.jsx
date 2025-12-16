@@ -34,10 +34,8 @@ const MyBookings = () => {
               className="grid grid-cols-1 md:grid-cols-[3fr_2fr_1fr] w-full border-b border-gray-300 py-4 md:py-6 items-center"
             >
 
-              {/* hotel details */}
+              {/* HOTEL DETAILS */}
               <div className="flex flex-col md:flex-row gap-4">
-
-                {/* ✅ IMAGE SIZE FIXED */}
                 <img
                   src={booking.room.images[0]}
                   alt="hotel-img"
@@ -53,20 +51,12 @@ const MyBookings = () => {
                   </p>
 
                   <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <img
-                      src={assets.locationIcon}
-                      alt="location-icon"
-                      className="w-4 h-4"
-                    />
+                    <img src={assets.locationIcon} alt="location" className="w-4 h-4" />
                     <span>{booking.hotel.address}</span>
                   </div>
 
                   <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <img
-                      src={assets.guestsIcon}
-                      alt="guests-icon"
-                      className="w-4 h-4"
-                    />
+                    <img src={assets.guestsIcon} alt="guests" className="w-4 h-4" />
                     <span>{booking.guests}</span>
                   </div>
 
@@ -74,16 +64,48 @@ const MyBookings = () => {
                 </div>
               </div>
 
-              {/* Date & Timings */}
-              <div></div>
+              {/* DATE & TIMINGS */}
+              <div className="flex flex-row md:items-center md:gap-12 gap-8 mt-3">
+                <div>
+                  <p>Check-In:</p>
+                  <p className="text-gray-500 text-sm">
+                    {new Date(booking.checkInDate).toDateString()}
+                  </p>
+                </div>
 
-              {/* payment status */}
-              <div></div>
+                <div>
+                  <p>Check-Out:</p>
+                  <p className="text-gray-500 text-sm">
+                    {new Date(booking.checkOutDate).toDateString()}
+                  </p>
+                </div>
+              </div>
+
+              {/* PAYMENT STATUS */}
+              <div className="flex flex-col items-start justify-center pt-3">
+                <div className="flex items-center gap-2">
+                  <div
+                    className={`h-3 w-3 rounded-full ${
+                      booking.isPaid ? 'bg-green-500' : 'bg-red-500'
+                    }`}
+                  ></div>
+
+                  <p className="text-sm">
+                    {booking.isPaid ? 'Paid' : 'Unpaid'}
+                  </p>
+                </div>
+
+                {!booking.isPaid && (
+                  <button className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-gray-50 transition-all cursor-pointer">
+                    Pay Now
+                  </button>
+                )}
+              </div>
 
             </div>
           ))}
-        </div>
 
+        </div>
       </div>
     </div>
   )
