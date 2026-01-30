@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { useAppContext } from '../context/AppContext'
 
 // Cities list (FIXED ERROR)
 const cities = [
@@ -12,6 +13,8 @@ const cities = [
 ]
 
 const HotelReg = () => {
+
+   const {setShowHotelReg}= useAppContext()
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70">
       
@@ -31,7 +34,7 @@ const HotelReg = () => {
           <img
             src={assets.closeIcon}
             alt="Close"
-            className="absolute top-4 right-4 w-4 cursor-pointer"
+            className="absolute top-4 right-4 w-4 cursor-pointer" onClick={()=>setShowHotelReg(false)}
           />
 
           <p className="text-xl font-semibold mb-4">
